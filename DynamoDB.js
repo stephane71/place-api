@@ -9,8 +9,6 @@ const HASH_KEY = "slug";
 class DynamoDB {
   constructor() {
     AWS.config.update({
-      accessKeyId: process.env.accessKeyId,
-      secretAccessKey: process.env.secretAccessKey,
       region: process.env.REGION,
       endpoint: `https://dynamodb.${process.env.REGION}.amazonaws.com`
     });
