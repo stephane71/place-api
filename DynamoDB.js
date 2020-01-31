@@ -1,16 +1,13 @@
-require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
 const AWS = require("aws-sdk");
-
-const DYNAMODB_AWS = "https://dynamodb.eu-west-3.amazonaws.com";
-const REGION = "eu-west-3";
-
 const HASH_KEY = "slug";
 
 class DynamoDB {
   constructor() {
     AWS.config.update({
-      region: process.env.REGION,
-      endpoint: `https://dynamodb.${process.env.REGION}.amazonaws.com`
+      accessKeyId: process.env.ACCESS_KEY_ID,
+      secretAccessKey: process.env.SECRECT_ACCESS_KEY,
+      region: process.env.TABLE_REGION,
+      endpoint: `https://dynamodb.${process.env.TABLE_REGION}.amazonaws.com`
     });
     this.dbDocClient = new AWS.DynamoDB.DocumentClient();
   }
@@ -30,7 +27,7 @@ class DynamoDB {
 
   getPlace(slug) {
     const params = {
-      TableName: process.env.PLACES_TABLE,
+      TableName: process.env.TABLE_NAME,
       Key: { slug }
     };
 
@@ -39,7 +36,7 @@ class DynamoDB {
 
   insertPlace(slug, place) {
     const params = {
-      TableName: process.env.PLACES_TABLE,
+      TableName: process.env.TABLE_NAME,
       Item: { [HASH_KEY]: slug, ...place }
     };
 
