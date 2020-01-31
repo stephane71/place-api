@@ -2,30 +2,24 @@ service: place-api
 
 plugins:
   - serverless-offline
-  - serverless-domain-manager
+  - serverless-plugin-common-excludes
+  - serverless-plugin-include-dependencies
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs12.x
   stage: ${opt:stage, "dev"}
-  region: eu-west-3
+  region: eu-west-2
   memorySize: 128
 
   environment:
-    NODE_ENV: ${self:provider.stage}
-    REGION: ${self:provider.region}
+    TABLE_REGION: eu-west-3
+    TABLE_NAME: Places-test
+    ACCESS_KEY_ID: ${ssm:/dev/aws/la-foulee-api/access_key_id~true}
+    SECRECT_ACCESS_KEY: ${ssm:/dev/aws/la-foulee-api/secret_access_key~true}
 
   iamManagedPolicies:
     - arn:aws:iam::514894570076:policy/La-Foulee-Places-${self:provider.stage}
-
-package:
- exclude:
-   - .git/**
-   - .gitignore
-   - package.json
-   - package-lock.json
-   - README.md
-   - .DS_Store
 
 functions:
   get:
@@ -48,13 +42,3 @@ functions:
           method: post
           authorizer: aws_iam
           cors: true
-
-custom:
-  domains:
-    dev: dev-api.la-foulee.com
-    production: api.la-foulee.com
-  customDomain:
-    domainName: ${self:custom.domains.${self:provider.stage}}
-    basePath: 'place'
-    stage: "${self:provider.stage}"
-    createRoute53Record: true
