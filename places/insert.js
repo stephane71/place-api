@@ -1,12 +1,8 @@
-require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
-
-const now = require("../utils/now");
 const DynamoDB = require("../DynamoDB");
 const placesDB = new DynamoDB();
 
-module.exports.handler = async (event = {}, context, callback) => {
-  now();
-  console.log("[La Foulee] Insert a place");
+module.exports.handler = async (event = {}) => {
+  console.log("La Foulee |Insert a place");
   console.log(event.body);
 
   if (!event.body)
