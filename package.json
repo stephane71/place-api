@@ -6,7 +6,6 @@
   "dependencies": {
     "@google/maps": "^0.5.5",
     "aws-sdk": "^2.348.0",
-    "dotenv": "^5.0.1",
     "moment": "^2.22.2"
   },
   "devDependencies": {
