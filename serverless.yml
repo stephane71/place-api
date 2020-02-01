@@ -1,3 +1,5 @@
+org: stephane71
+app: api
 service: place-api
 
 plugins:
