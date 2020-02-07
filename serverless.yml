@@ -3,7 +3,7 @@ app: api
 service: place-api
 
 plugins:
-  - serverless-offline
+  - serverless-domain-manager
   - serverless-plugin-common-excludes
   - serverless-plugin-include-dependencies
 
@@ -44,3 +44,10 @@ functions:
           method: post
           authorizer: aws_iam
           cors: true
+
+custom:
+  customDomain:
+    domainName: api.la-foulee.com
+    basePath: "place"
+    stage: ${self:provider.stage}
+    createRoute53Record: true
