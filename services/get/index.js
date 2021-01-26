@@ -1,7 +1,7 @@
 const middy = require("@middy/core");
 const httpErrorHandler = require("@middy/http-error-handler");
 const validator = require("@middy/validator");
-const inputSchema = require("./schema");
+const { input: inputSchema } = require("./schema");
 /*const createError = require("http-errors");
 const DynamoDB = require("../../DynamoDB");
 const placesDB = new DynamoDB();*/
