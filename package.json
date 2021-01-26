@@ -5,8 +5,8 @@
   "dependencies": {
     "@googlemaps/google-maps-services-js": "^3.1.16",
     "@middy/core": "^1.5.0",
-    "@middy/http-error-handler": "^2.0.0-alpha.2",
-    "@middy/validator": "^2.0.0-alpha.2",
+    "@middy/http-error-handler": "^1.5.0",
+    "@middy/validator": "^1.5.0",
     "aws-sdk": "^2.348.0",
     "http-errors": "^1.8.0",
     "moment": "^2.22.2"
